@@ -1,4 +1,4 @@
-# User-Registration-Form-Cloudinary-MongoDB-JWT
+# User-Registration-Form-Cloudinary-MongoDB-JWT 
 
 A full-stack Node.js application that lets users sign up with an avatar photo, log in securely, and manage their profile.  
 Key goals:
