@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Successful!</title>
+    <!-- Google Fonts - Inter -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(
+          to bottom right,
+          #d4edda,
+          #c2e6d6
+        ); /* Light green gradient */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        text-align: center;
+        color: #333;
+        box-sizing: border-box;
+      }
+
+      /* Header Bar Styling (consistent with other pages) */
+      .header-bar {
+        width: 100%;
+        background-color: #34495e; /* Consistent dark header */
+        color: white;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between; /* Space between author text and social links */
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        font-size: 0.95em;
+        box-sizing: border-box;
+        position: sticky; /* Keep header visible on scroll */
+        top: 0;
+        z-index: 1000; /* Ensure it stays on top */
+      }
+
+      .author-text {
+        font-weight: 500;
+        letter-spacing: 0.5px;
+      }
+
+      .social-links {
+        display: flex;
+        align-items: center;
+      }
+
+      .social-links a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        font-weight: 400;
+        transition: color 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: #2ecc71; /* Green highlight on hover */
+      }
+
+      /* Logout button styling (consistent with user-list page) */
+      .logout-button {
+        background-color: #dc3545; /* Red color for logout */
+        padding: 8px 15px;
+        border-radius: 8px;
+        margin-left: 20px; /* Space from other social links */
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        white-space: nowrap; /* Prevent button text from wrapping */
+      }
+
+      .logout-button:hover {
+        background-color: #c82333;
+        transform: translateY(-2px);
+      }
+
+      .success-container {
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        max-width: 600px;
+        width: 100%;
+        margin: 20px;
+        box-sizing: border-box;
+      }
+
+      h1 {
+        color: #28a745; /* Green for success */
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      p {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 25px;
+      }
+
+      .login-link-container {
+        margin-top: 30px;
+      }
+
+      .login-link-container a {
+        display: inline-block;
+        background: linear-gradient(
+          135deg,
+          #007bff,
+          #0056b3
+        ); /* Blue button like login page */
+        color: white;
+        padding: 15px 30px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1em;
+        transition: background 0.3s ease, transform 0.2s ease,
+          box-shadow 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+      }
+
+      .login-link-container a:hover {
+        background: linear-gradient(135deg, #0056b3, #004085);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+      }
+
+      .login-link-container a:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 10px rgba(0, 123, 255, 0.3);
+      }
+
+      .dancing-banana {
+        margin-top: 30px;
+        max-width: 150px; /* Adjust size of GIF */
+        height: auto;
+        border-radius: 8px; /* Slightly rounded corners for the GIF */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      @media (max-width: 600px) {
+        /* Header responsive adjustments */
+        .header-bar {
+          flex-direction: column;
+          padding: 10px 20px;
+        }
+        .social-links {
+          margin-top: 10px;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+        .social-links a {
+          margin: 5px 10px;
+        }
+        .logout-button {
+          margin-left: 0; /* Remove left margin when stacked */
+          margin-top: 10px; /* Add top margin when stacked */
+        }
+
+        .success-container {
+          padding: 30px 20px;
+        }
+
+        h1 {
+          font-size: 2em;
+        }
+
+        p {
+          font-size: 1em;
+        }
+
+        .login-link-container a {
+          padding: 12px 25px;
+          font-size: 1em;
+        }
+
+        .dancing-banana {
+          max-width: 100px;
+        }
+      }
+      .flash-message.success {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 12px 20px;
+        margin: 15px 0;
+        border-radius: 6px;
+        font-weight: 500;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header-bar">
+      <div class="author-text">by Vopesh</div>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/vopeshchandra" target="_blank"
+          >LinkedIn</a
+        >
+        <a href="https://github.com/vopesh" target="_blank">GitHub</a>
+        <a
+          href="https://public.tableau.com/app/profile/vopesh.chandra/vizzes"
+          target="_blank"
+          >Tableau</a
+        >
+        <!-- Add logout button (only shown when logged in) -->
+      </div>
+    </header>
+    <div class="success-container">
+      <h1>
+        Thank you for registering! <% if (user) { %>, <%= user.name %><% } %>!
+      </h1>
+      <p>Your account has been successfully created.</p>
+      <% if (user) { %>
+      <div class="account-info">
+        <p>Email: <strong><%= user.email %></strong></p>
+        <p>Phone: <strong><%= user.fullPhone %></strong></p>
+      </div>
+      <% } %>
+      <div class="login-link-container">
+        <p>Please <a href="/login">login here</a> to continue.</p>
+        <meta http-equiv="refresh" content="10;url=/login" />
+        <p>Else, You'll be automatically redirected in 10 seconds...</p>
+      </div>
+      <% if (success) { %>
+      <div class="flash-message success"><%= success %></div>
+      <% } %>
+      <img
+        src="https://media.giphy.com/media/efgEaN1Hq6B7Jb5u0T/giphy.gif"
+        alt="Dancing Banana"
+        class="dancing-banana"
+      />
+    </div>
+  </body>
+</html>

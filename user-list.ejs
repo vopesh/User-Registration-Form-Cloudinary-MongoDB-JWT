@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registered Users</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <!-- Manual Custom Styles -->
+    <link rel="stylesheet" href="/user-list/style.css" />
+  </head>
+  <body>
+    <header class="header-bar">
+      <div class="author-text">by Vopesh</div>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/vopeshchandra" target="_blank"
+          >LinkedIn</a
+        >
+        <a href="https://github.com/vopesh" target="_blank">GitHub</a>
+        <a
+          href="https://public.tableau.com/app/profile/vopesh.chandra/vizzes"
+          target="_blank"
+          >Tableau</a
+        >
+        <!-- Add logout button (only shown when logged in) -->
+        <% if (typeof loggedIn !== 'undefined' && loggedIn) { %>
+        <a href="/logout" class="logout-button">Logout</a>
+        <% } %>
+      </div>
+    </header>
+    <form id="whitelistForm" class="safe-ip-form">
+      <button type="submit" class="enable-safe-ip-button">
+        ✅ Enable Safe IP
+      </button>
+    </form>
+    <div id="whitelist-message"></div>
+    <div class="container">
+      <h1>Registered Users</h1>
+
+      <% if (users && users.length > 0) { %>
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>Photo</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Country</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% users.forEach(user => { %>
+          <tr>
+            <td data-label="Photo">
+              <% if (user.cloudinaryURL) { %>
+              <img
+                src="<%= user.cloudinaryURL %>"
+                alt="Profile"
+                class="user-avatar"
+              />
+              <% } else { %>
+              <div
+                class="user-avatar"
+                style="
+                  background: #eee;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <i class="fas fa-user" style="color: #999"></i>
+              </div>
+              <% } %>
+            </td>
+            <td data-label="Name"><%= user.name %></td>
+            <td data-label="Email"><%= user.email %></td>
+            <td data-label="Phone"><%= user.fullPhone || 'N/A' %></td>
+            <td data-label="Country"><%= user.country || 'N/A' %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      <% } else { %>
+      <div class="no-users">
+        <p>No users found</p>
+      </div>
+      <% } %>
+
+      <a href="/profile" class="back-button">Back to Home</a>
+    </div>
+    <% if (!isRemembered) { %>
+    <script src="/js/idleTimeout.js"></script>
+    <% } else { %>
+    <script>
+      console.log("🛑 Remember Me active — idle timeout script not loaded.");
+    </script>
+    <% } %>
+    <!-- Font Awesome JS (if needed for dynamic icons, otherwise CSS link is enough) -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script> -->
+    <script src="/js/whitelistIP.js"></script>
+  </body>
+</html>

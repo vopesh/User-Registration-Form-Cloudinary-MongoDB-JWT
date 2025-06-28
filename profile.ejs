@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Vopesh's Profile Page</title>
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- Google Fonts - Inter -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/profile/style.css" />
+    <link rel="stylesheet" href="/css-idle/idle.css" />
+  </head>
+  <body>
+    <header class="header-bar">
+      <div class="author-text">by Vopesh</div>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/vopeshchandra" target="_blank"
+          >LinkedIn</a
+        >
+        <a href="https://github.com/vopesh" target="_blank">GitHub</a>
+        <a
+          href="https://public.tableau.com/app/profile/vopesh.chandra/vizzes"
+          target="_blank"
+          >Tableau</a
+        >
+        <% if (typeof loggedIn !== 'undefined' && loggedIn) { %>
+        <a href="/logout" class="logout-button">Logout</a>
+        <% } %>
+      </div>
+    </header>
+    <form id="whitelistForm" class="safe-ip-form">
+      <button type="submit" class="enable-safe-ip-button">
+        ✅ Enable Safe IP
+      </button>
+    </form>
+    <div id="whitelist-message"></div>
+    <div class="profile-container">
+      <h2 class="profile-heading">Profile</h2>
+
+      <!-- Name Field -->
+      <div class="profile-detail-group">
+        <div class="profile-label">Name:</div>
+        <div class="profile-value" id="profile-name"><%= user.name %></div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="profile-detail-group">
+        <div class="profile-label">Email:</div>
+        <div class="profile-value" id="profile-email"><%= user.email %></div>
+      </div>
+
+      <!-- Photo Field -->
+      <div class="profile-detail-group photo-group">
+        <div class="profile-label">Photo:</div>
+        <img
+          src="<%= user.cloudinaryURL %>"
+          alt="Profile Photo"
+          class="profile-photo-display"
+          id="profile-photo"
+        />
+      </div>
+
+      <!-- Phone Number Field -->
+      <div class="profile-detail-group">
+        <div class="profile-label">Phone Number:</div>
+        <div class="profile-value" id="profile-phone">
+          <%= user.fullPhone %>
+        </div>
+      </div>
+
+      <!-- Country Field -->
+      <div class="profile-detail-group">
+        <div class="profile-label">Country:</div>
+        <div class="profile-value" id="profile-country">
+          <%= user.country %>
+        </div>
+      </div>
+
+      <!-- Show All Users Button -->
+      <a href="/user-list" class="show-users-button">Show all users</a>
+    </div>
+    <script src="/js/whitelistIP.js"></script>
+    <% if (!isRemembered) { %>
+    <script src="/js/idleTimeout.js"></script>
+    <% } else { %>
+    <script>
+      console.log("🛑 Remember Me active — idle timeout script not loaded.");
+    </script>
+    <% } %>
+  </body>
+</html>

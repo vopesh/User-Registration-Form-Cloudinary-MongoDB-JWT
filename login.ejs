@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vopesh's Login Page</title>
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- Google Fonts - Inter -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/login/style.css" />
+  </head>
+  <body>
+    <header class="header-bar">
+      <div class="author-text">by Vopesh</div>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/vopeshchandra" target="_blank"
+          >LinkedIn</a
+        >
+        <a href="https://github.com/vopesh" target="_blank">GitHub</a>
+        <a
+          href="https://public.tableau.com/app/profile/vopesh.chandra/vizzes"
+          target="_blank"
+          >Tableau</a
+        >
+        <!-- Add logout button (only shown when logged in) -->
+        <% if (typeof loggedIn !== 'undefined' && loggedIn) { %>
+        <a href="/logout" class="logout-button">Logout</a>
+        <% } %>
+      </div>
+    </header>
+
+    </form>
+    <div class="login-form-container">
+      <% if (success_msg.length > 0) { %>
+      <div class="alert alert-success"><%= success_msg[0] %></div>
+      <% } %> <% if (error_msg.length > 0) { %>
+      <div class="alert alert-danger"><%= error_msg[0] %></div>
+      <% } %>
+      <h2 class="login-heading">Login</h2>
+      <p class="register-prompt">
+        First time user? Please <a href="/">register first</a>
+      </p>
+      <div id="validation-error" class="login-error-message"></div>
+      <form id="login-form" action="/login" method="post">
+        <!-- Email Field -->
+        <div class="login-form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="e.g., your.email@example.com"
+            required
+          />
+        </div>
+
+        <!-- Password Field -->
+        <div class="login-form-group">
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+        <div class="login-form-group">
+          <input type="checkbox" id="rememberMe" name="rememberMe" />
+          <label for="rememberMe">Remember me</label>
+        </div>
+        <!-- Login Button -->
+        <button type="submit" class="login-button">Login</button>
+      </form>
+    </div>
+
+    <script>
+      const form = document.getElementById("login-form");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const errorDiv = document.getElementById("validation-error");
+        let messages = [];
+
+        errorDiv.innerHTML = "";
+        errorDiv.style.display = "none";
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email === "") {
+          messages.push("Email cannot be blank.");
+        } else if (!emailRegex.test(email)) {
+          messages.push("Please enter a valid email address.");
+        }
+
+        if (password === "") {
+          messages.push("Password cannot be blank.");
+        }
+
+        if (messages.length > 0) {
+          errorDiv.style.display = "block";
+          errorDiv.innerHTML = messages.map((msg) => `<p>${msg}</p>`).join("");
+        } else {
+          // Optional success message (brief)
+          errorDiv.style.display = "block";
+          errorDiv.style.backgroundColor = "#d4edda";
+          errorDiv.style.color = "#155724";
+          errorDiv.innerHTML = "<p>Logging in...</p>";
+
+          // ✅ Actually submit the form
+          setTimeout(() => {
+            //const rememberMeCheckbox = document.getElementById("rememberMe");
+            //if (rememberMeCheckbox && rememberMeCheckbox.checked) {
+            //const input = document.createElement("input");
+            //input.type = "hidden";
+            //input.name = "rememberMe";
+            //input.value = "on";
+            //form.appendChild(input);
+            //}
+
+            form.submit(); //submit to post
+          }, 300);
+        }
+      });
+    </script>
+    <script src="/js/login.js"></script>
+  </body>
+</html>

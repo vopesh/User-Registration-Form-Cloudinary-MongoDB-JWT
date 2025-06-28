@@ -1,0 +1,40 @@
+/* idle.css */
+
+#idle-warning {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff8dc;
+  color: #333;
+  border: 2px solid #f5c518;
+  border-radius: 10px;
+  padding: 20px 30px;
+  z-index: 9999;
+  font-size: 1.1em;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  max-width: 90%;
+  width: 400px;
+  text-align: center;
+  animation: popupFade 0.3s ease-out;
+}
+
+#idle-warning-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 1.5rem;
+  color: #a00;
+  cursor: pointer;
+}
+
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translate(-50%, -50%);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translate(-50%, -50%);
+  }
+}
