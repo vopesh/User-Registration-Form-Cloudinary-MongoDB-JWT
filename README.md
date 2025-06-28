@@ -35,13 +35,59 @@ Key goals:
 
 ## 📂 Project Structure
 
-├── models/ # Mongoose schemas
-├── routes/ # SSR + API route files
-├── controllers/ # Business logic
-├── middlewares/ # auth, rate-limit, error handler…
-├── public/ # Static assets
-├── views/ # EJS templates
-└── server.js # App entry-point
+project/
+├── nodemodule
+├── controllers
+        ├──userController.js  
+        ├──apicontroller.js 
+        ├──apiLoginController.js 
+        ├──tokenController.js      # Business logic
+        ├──userController.js 
+├── logs   # for winston log
+├── models/
+     ├──users.js
+     ├──deletedUser.js 
+     ├──refereshToken.js 
+     ├──WhitelistedIP.js   # Mongoose models         
+├── routes
+    ├──userRoutes.js  
+    ├──apiRoutes.js          # Express routes
+├── middleware
+    ├──multerConfig.js
+    ├──authMiddleware.js
+    ├──errorHandling.js
+    ├──IpLimiter.js  
+    ├──verifyJWT.js 
+    ├──rateLimiters.js     # Custom middleware
+├── src
+    ├── utils
+        devTools.js
+        logger.js            # Helper functions
+├── views
+    ├──register.ejs
+    ├──login.js
+    ├──profile.js
+    ├──user.ejs
+    ├──user-list .ejs        # EJS templates
+├── public
+    ├──css-idle
+        ├──style.css# css
+    ├──js
+        ├──style.css
+    ├──login
+        ├──style.css
+    ├──profile
+        ├──style.css
+    ├──upload  # Static files
+    ├──user-lists
+        ├──style.css          
+├── .env.example
+├── package.json 
+├── package-lock.json             # Configuration files
+└── server.js             # Main application file
+
+
+
 
 ## 🔑 Environment Variables (`.env`)
 
@@ -63,6 +109,24 @@ Key goals:
 Create `.env` by copying `.env.example` and filling in the blanks.
 
 ---
+
+---
+
+## 👀 Dev Tools (auto-on in development)
+
+`src/utils/devTools.js` is a tiny helper that’s **only imported when `NODE_ENV !== "production"`** :contentReference[oaicite:0]{index=0}.
+
+| Utility | What it does | Where it’s used |
+|---------|--------------|-----------------|
+| `logDevStartup(port, uploadsPath, cloudinaryReady)` | Prints an ASCII banner with the port, uploads folder location, and whether Cloudinary creds are present. Shows up the moment the server boots. | `server.js` |
+| `multer.debug = true`  | Turns on verbose file-upload logs (file size, timing, mimetype). | `server.js` |
+| `devTools.banner()` <sup>*optional*</sup> | Decorative console banner; remove it in prod for clean logs. | Everywhere you need a quick banner |
+
+Because the file is pulled in *dynamically*, you **don’t have to guard calls with `if (isDev)`**—the whole module is simply missing in production bundles.
+
+---
+
+
 
 ## 🚀 Quick Start
 
