@@ -34,7 +34,7 @@ Key goals:
 ---
 
 ## 📂 Project Structure
-
+<pre>
 project/
 ├── nodemodule
 ├── controllers
@@ -85,7 +85,7 @@ project/
 ├── package.json 
 ├── package-lock.json             # Configuration files
 └── server.js             # Main application file
-
+</pre>
 
 
 
